@@ -18,6 +18,7 @@ a{color:inherit;text-decoration:none}
 header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--ln)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{font-weight:800;font-size:20px;color:var(--g);letter-spacing:-.5px}
+.logo img{display:block;height:40px;width:auto}@media(max-width:720px){.logo img{height:34px}}
 .logo small{display:block;font-size:9px;letter-spacing:2px;color:var(--o);font-weight:700;line-height:1}
 nav{display:flex;gap:20px;font-size:14px;font-weight:500;overflow-x:auto}
 nav a{white-space:nowrap;color:var(--mu)}nav a:hover{color:var(--g)}
@@ -123,7 +124,7 @@ nav a{display:inline-block!important}
 </head>
 <body>
 <header><div class="w nav">
-<a class="logo" href="#home"><small>FOOD SERVICE PARTNER</small>이츠누리</a>
+<a class="logo" href="#home" aria-label="이츠누리 홈"><img src="images/logo.png" alt="이츠누리 CONNECTING EVERY TABLE" width="150" height="40"></a>
 <nav><a href="#home">홈</a><a href="#about">회사소개</a><a href="#supply">식자재 공급</a><a href="#guide">공급 안내</a><a href="#archive">자료실</a><a href="#news">식자재 정보</a></nav>
 <a class="btn o" href="#contact" style="padding:8px 14px;font-size:13px">상담 신청</a>
 <button class="burger" type="button" aria-label="메뉴">☰</button></div></header>
@@ -313,7 +314,7 @@ window.csvParse(t.replace(/^\uFEFF/,'')).slice(1).forEach(function(r,i){var k=(r
 if(!K[k]||!ti||!u)return;out.push({k:k,t:ti,s:(r[2]||'').trim(),d:m?m[1]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[3]).slice(-2):'',u:u,f:(r[5]||'').trim(),i:i});});
 return out.sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:b.i-a.i;});}
 draw();
-if(window.RESOURCE_CSV_URL&&window.csvParse){fetch(window.RESOURCE_CSV_URL).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(t){D=fromRes(t);draw();}).catch(function(){});}
+if(window.RESOURCE_CSV_URL&&window.csvParse){fetch(window.RESOURCE_CSV_URL).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(t){D=fromRes(t);draw();if(!D.length)console.warn('자료실: 읽을 수 있는 줄이 없습니다. 자료실 탭이 웹에 게시되었는지, 첫 줄이 구분·제목·설명·날짜·링크·형식인지 확인하세요.');}).catch(function(){});}
 })();
 </script>
 <script>
